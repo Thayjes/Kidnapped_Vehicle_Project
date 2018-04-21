@@ -69,6 +69,20 @@ inline double * getError(double gt_x, double gt_y, double gt_theta, double pf_x,
 	}
 	return error;
 }
+/*
+ * Determines the measurement likelihood of an observation
+ * @param(sense_x, sense_y) x and y co-ordinates of the observation
+ * @param(x, y) x and y co-ordinates of the associated landmark
+ * @param (sigx, sigy) standard deviation for the x and y co-ordinates of the landmark
+ * @output Measurement Likelihood for the given observation
+ */
+inline double meas_prob(double x, double y, double mu_x, double mu_y, double sigx, double sigy){
+    double xdiff = x - mu_x;
+    double ydiff = y - mu_y;
+    double exponent = -( pow(xdiff , 2)/(2*sigx*sigx) + pow(ydiff, 2)/(2*sigy*sigy) );
+    double prob = (1 / (2*M_PI*sigx*sigy)) * exp(exponent);
+    return prob;
+}
 
 /* Reads map data from a file.
  * @param filename Name of file containing map data.

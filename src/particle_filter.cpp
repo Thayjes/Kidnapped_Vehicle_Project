@@ -149,8 +149,8 @@ void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::ve
         associated_ids.push_back(matched_id);
         associated_x.push_back(matched_x);
         associated_y.push_back(matched_y);
-        SetAssociations(particle, associated_ids, associated_x, associated_y);
     }
+    SetAssociations(particle, associated_ids, associated_x, associated_y);
 }
 
 void ParticleFilter::updateWeights(double sensor_range, double std_landmark[], 
